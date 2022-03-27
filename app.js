@@ -5,7 +5,7 @@ const routesAdmin = require('./routing/web/routes')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const socket = require('./utils/socketio')
-const { PORTS, PORT } = require('./config')
+const { PORTS, PORT, ENV } = require('./config')
 const errors = require('./utils/errors')
 const fileUpload = require('express-fileupload')
 const fs = require('fs')
@@ -13,6 +13,7 @@ const swaggerUi = require('swagger-ui-express')
 const helmet = require('helmet')
 const path = require('path')
 const https = require('https')
+
 //Permite imprimir por pantalla el documento js q imprime por consola
 // const CsbInspector = require('./utils/CsbInspector')(app, fs)
 const CsbInspector = require('csb-inspector/express-socket')
@@ -82,10 +83,12 @@ function startServer() {
 
 	const serverHttp = app.listen(PORT, () => {
 		console.log(`Servidor http escuchando en el puerto ${PORT}`)
+		console.log(`Ambiente de ${ENV}`);
 	})
-
+	
 	// const serverHttps = https.createServer(httpsOptions, app).listen(PORTS, () => {
-	// 	console.log(`Servidor https escuchando en el puerto ${PORTS}`)
+	// console.log(`Servidor https escuchando en el puerto ${PORTS}`)
+	// console.log(`Ambiente de ${ENV}`);
 	// })
 
 	//Iniciamos SokcetIO

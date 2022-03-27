@@ -130,7 +130,7 @@ class Queries {
 	}
 
 	static async query(query) {
-		return await Execute(query)
+		return await Execute.Execute(query)
 	}
 
 	static async queryInject(query, params) {

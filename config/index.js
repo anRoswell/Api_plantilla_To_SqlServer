@@ -27,6 +27,7 @@ all = {
 	fileExtensions: {
 		visit: ['image/jpeg', 'image/png'],
 	},
+	ENV: process.env.ENV
 }
 
 module.exports = _.merge(all, envFile || {})

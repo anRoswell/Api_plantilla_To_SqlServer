@@ -11,20 +11,19 @@ const Queries = require('./../db/queries')
 const findOne = async (user) => {
 	const query = `
       SELECT 
-        u.id,
-        u.usrEmail,
-        u.usrPassword,
-        u.usrNames,
-        u.usrLastNames,
-        u.identificationTypeId,
-        u.usrCedula,
-        u.usrNroCelular,
-        u.usrTelefonoFijo,
-        u.usrDireccion,
+         u.id[id]
+        ,[usr_email]
+        ,[usr_password]
+        ,[usr_nameComplete]
+        ,[identificationTypeId]
+        ,[usr_cedula]
+        ,[usr_nroCelular]
+        ,[usr_telefonoFijo]
+        ,[usr_direccion]
         profileId
       FROM [dbo].[users] u
       INNER JOIN [dbo].[profiles] p ON u.profileId = p.id
-      WHERE usrEmail = '${user}' AND u.usrStatus = 1
+      WHERE usr_email = '${user}' AND u.usr_status = 1
     `
 	return await Queries.query(query)
 }

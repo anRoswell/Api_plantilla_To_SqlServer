@@ -8,7 +8,6 @@ const Queries = require('./../../db/queries')
 const jwt = require('./../middlewares/jwt')
 const email = require('../../utils/email/email')
 
-const firebase = require('./../../utils/firebase')
 
 module.exports = function () {
 	return {
@@ -57,18 +56,19 @@ module.exports = function () {
 				// 	'fSEL-4haSZm1RGp1yUqJ45:APA91bFr-eNjHJdYMkmhpUGXRFZ9KLLJqEVlLtZmP1hkkaRPuviAel5SezjymDYXFcaxM1kLiWlNgy9ZpKkapyZhpkHo6w88GtKOXttRVgafqC70XWrj3o88vSWGDq47CoBrdVoBm4wC'
 				// firebase.sendMessage(tokenFirebase, { campo1: '1', campo2: '2' })
 				console.log(req.body)
-				const { usrEmail, usrPassword } = req.body
-				const user = await authMobile.findOne(usrEmail)
+				const { usr_email, usr_password } = req.body
+				const user = await authMobile.findOne(usr_email)
+				console.log(user);
 				if (parseInt(user.rowsAffected, 10) === 0) {
 					Response.error(req, res, 'Datos de acceso incorrectos: Usuario', 400)
 				} else {
-					const validatePassword = bcrypt.compareSync(usrPassword, user.recordset[0].usrPassword)
+					const validatePassword = bcrypt.compareSync(usr_password, user.recordset[0].usr_password)
 
 					if (!validatePassword) {
 						Response.error(req, res, 'Datos de acceso incorrectos: Password', 400)
 					} else {
 						// await authSeq.update(user.id, { last_login: new Date() })
-						delete user.recordset[0].usrPassword
+						delete user.recordset[0].usr_password
 						const token = jwt.create(user.recordset[0])
 						if (token) {
 							res.setHeader('Authorization', `Bearer ${token}`)
@@ -79,7 +79,7 @@ module.exports = function () {
 				}
 			} catch (e) {
 				console.log(`El throw lleva aqui`)
-				// log4js.error(`[action: authMobileMsSql][msg: ${e.message}][file:${__filename}]`)
+				log4js.error(`[action: authMobileMsSql][msg: ${e.message}][file:${__filename}]`)
 				Response.error(req, res, 'Error interno en el servidor', 500)
 			}
 		},
