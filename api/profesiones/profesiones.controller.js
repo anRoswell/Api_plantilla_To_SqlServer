@@ -21,7 +21,7 @@ module.exports = function () {
 		createProfesion: async (req, res) => {
 			try {
 				const data = req.body
-				const resp = await service.createProfesiones(data)
+				const resp = await service.createProfesion(data)
                 return resp
 			} catch (e) {
 				console.log(e)
