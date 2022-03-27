@@ -12,6 +12,12 @@ router
 			.then((lista) => response.success(req, res, lista, 200, 'created'))
 			.catch(next)
 	})
+    .post('/createProfesion',(req, res, next) => {
+        Controller.createProfesion(req, res)
+			.then((lista) => response.success(req, res, lista, 200, 'created'))
+			.catch(next)
+    })
+    
 	
 
 module.exports = router

@@ -20,6 +20,17 @@ const getProfesiones = async () => {
     }	
 }
 
+const createProfesion = async (data) => {
+	try {
+        const { recordset } = await Queries.querySP('[csc].[spCreateProfesiones]', [...data])
+	    return recordset
+    } catch (e) {
+        log4js.error(`[action: createProfesiones metodo: createProfesiones][msg: ${e.message}][file:${__filename}]`)
+		throw new Error(mensajes('DB_CONNECTION_ERROR').message)
+    }	
+}
+
 module.exports = {
-	getProfesiones
+	getProfesiones,
+    createProfesion
 }

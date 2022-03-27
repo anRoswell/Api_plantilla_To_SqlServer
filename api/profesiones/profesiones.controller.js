@@ -17,6 +17,17 @@ module.exports = function () {
 				log4js.error(`[action: authAdminMsSql][msg: ${e.message}][file:${__filename}]`)
 				throw Response.error(req, res, 'Error interno en el servidor', 500)
 			}
+		},
+		createProfesion: async (req, res) => {
+			try {
+				const data = req.body
+				const resp = await service.createProfesiones(data)
+                return resp
+			} catch (e) {
+				console.log(e)
+				log4js.error(`[action: authAdminMsSql][msg: ${e.message}][file:${__filename}]`)
+				throw Response.error(req, res, 'Error interno en el servidor', 500)
+			}
 		}
 	}
 }
