@@ -1,7 +1,6 @@
 const Execute = require('./execute')
 const mensajes = require('./../utils/messages')
 const log4js = require('../utils/log4js')()
-var jsonSql = require('json-sql')()
 
 class Queries {
 	static create(table, fields, ignore) {
@@ -12,17 +11,6 @@ class Queries {
 			log4js.error(`[action: Queries create][msg: ${error.message}][file:${__filename}]`)
 			throw new Error(mensajes('DB_CONNECTION_ERROR').description)
 		}
-	}
-
-	static createQuery(table, fields, id) {
-		const options = {
-			dialect: 'mssql',
-			type: 'update',
-			table: table,
-			condition: { id },
-			modifier: fields,
-		}
-		return jsonSql.build(options)
 	}
 
 	static update(table, fields, id) {
@@ -135,6 +123,10 @@ class Queries {
 
 	static async queryInject(query, params) {
 		return await Execute.ExecuteInyect(query, params)
+	}
+
+	static async querySP(name, params) {
+		return await Execute.ExecuteInyectStoreProcedure(name, params)
 	}
 }
 
