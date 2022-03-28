@@ -33,6 +33,7 @@ module.exports = function () {
 			try {
 				const data = req.body
 				const id = req.query.id
+				console.log(id)
 				const resp = await service.updateProfesion(data, id)
                 return resp
 			} catch (e) {

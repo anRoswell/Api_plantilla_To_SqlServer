@@ -17,7 +17,7 @@ router
 			.then((lista) => response.success(req, res, lista, 200, 'created'))
 			.catch(next)
     })
-    .put('/updateProfesion/:id',(req, res, next) => {
+    .put('/updateProfesion',(req, res, next) => {
         Controller.updateProfesion(req, res)
 			.then((lista) => response.success(req, res, lista, 200, 'update'))
 			.catch(next)
