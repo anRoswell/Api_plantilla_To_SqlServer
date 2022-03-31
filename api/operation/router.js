@@ -12,19 +12,9 @@ router
 			.then((lista) => response.success(req, res, lista, 200, 'search'))
 			.catch(next)
 	})
-    .post('/createProfesion',(req, res, next) => {
-        Controller.createProfesion(req, res)
+    .post('/createOperation',(req, res, next) => {
+        Controller.createOperation(req, res)
 			.then((lista) => response.success(req, res, lista, 200, 'created'))
-			.catch(next)
-    })
-    .put('/updateProfesion',(req, res, next) => {
-        Controller.updateProfesion(req, res)
-			.then((lista) => response.success(req, res, lista, 200, 'update'))
-			.catch(next)
-    })
-    .delete('/deleteProfesion',(req, res, next) => {
-        Controller.deleteProfesion(req, res)
-			.then((lista) => response.success(req, res, lista, 200, 'delete'))
 			.catch(next)
     })
 
