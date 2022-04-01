@@ -20,6 +20,10 @@ module.exports = function () {
 		},
 		createOperation: async (req, res) => {
 			try {
+				console.log(req.file)
+				if(req.file){
+					console.log(req.file)
+				}
 				const data = await service.createOperation(req.body)
                 return data
 			} catch (e) {

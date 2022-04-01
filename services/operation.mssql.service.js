@@ -15,7 +15,13 @@ const initialParameters = async () => {
         const profesiones = await Queries.querySP('[csc].[spProfesiones]')
         const empresas = await Queries.querySP('[csc].[spEmpresas]')
         const sedes = await Queries.querySP('[csc].[spSedes]')
-	    return { profesiones: profesiones.recordset, empresas: empresas.recordset, sedes: sedes.recordset }
+        const profesionales = await Queries.querySP('[ope].[spProfesionales]')
+	    return { 
+            profesiones: profesiones.recordset, 
+            empresas: empresas.recordset, 
+            sedes: sedes.recordset, 
+            profesionales: profesionales.recordset 
+        }
     } catch (e) {
         log4js.error(`[action: operation metodo: initialParameters][msg: ${e.message}][file:${__filename}]`)
 		throw new Error(mensajes('DB_CONNECTION_ERROR').message)
