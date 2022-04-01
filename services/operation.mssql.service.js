@@ -24,8 +24,8 @@ const initialParameters = async () => {
 
 const createOperation = async (data) => {
 	try {
-        const data = await Queries.querySP('[csc].[spProfesiones]', [{...data}])
-	    return data
+        const {recordset} = await Queries.querySP('[ope].[spProfesiones]', [{action: 1, ...data}])
+	    return recordset
     } catch (e) {
         log4js.error(`[action: operation metodo: createOperation][msg: ${e.message}][file:${__filename}]`)
 		throw new Error(mensajes('DB_CONNECTION_ERROR').message)

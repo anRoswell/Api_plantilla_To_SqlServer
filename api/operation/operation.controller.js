@@ -20,7 +20,7 @@ module.exports = function () {
 		},
 		createOperation: async (req, res) => {
 			try {
-				const data = await service.createOperation()
+				const data = await service.createOperation(req.body)
                 return data
 			} catch (e) {
 				console.log(e)
