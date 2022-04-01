@@ -15,7 +15,7 @@ const initialParameters = async () => {
         const profesiones = await Queries.querySP('[csc].[spProfesiones]')
         const empresas = await Queries.querySP('[csc].[spEmpresas]')
         const sedes = await Queries.querySP('[csc].[spSedes]')
-        const profesionales = await Queries.querySP('[ope].[spProfesionales]')
+        const profesionales = await Queries.querySP('[ope].[spProfesionales]', [{action: 2}])
 	    return { 
             profesiones: profesiones.recordset, 
             empresas: empresas.recordset, 
