@@ -17,5 +17,10 @@ router
 			.then((lista) => response.success(req, res, lista, 200, 'created'))
 			.catch(next)
     })
+	.put('/updateOperation', (req, res, next) => {
+        Controller.updateOperation(req, res)
+			.then((lista) => response.success(req, res, lista, 200, 'created'))
+			.catch(next)
+    })
 
 module.exports = router
