@@ -35,7 +35,7 @@ const updateProfesion = async (data, id) => {
         const { recordset } = await Queries.querySP('[csc].[spProfesiones]', [{accion: 2, ...data, id}])
 	    return recordset
     } catch (e) {
-        log4js.error(`[action: createProfesiones metodo: createProfesiones][msg: ${e.message}][file:${__filename}]`)
+        log4js.error(`[action: updateProfesiones metodo: updateProfesiones][msg: ${e.message}][file:${__filename}]`)
 		throw new Error(mensajes('DB_CONNECTION_ERROR').message)
     }	
 }
@@ -45,7 +45,7 @@ const deleteProfesion = async (id) => {
         const { recordset } = await Queries.querySP('[csc].[spProfesiones]', [{accion: 3, id}])
 	    return recordset
     } catch (e) {
-        log4js.error(`[action: createProfesiones metodo: createProfesiones][msg: ${e.message}][file:${__filename}]`)
+        log4js.error(`[action: deleteProfesiones metodo: deleteProfesiones][msg: ${e.message}][file:${__filename}]`)
 		throw new Error(mensajes('DB_CONNECTION_ERROR').message)
     }	
 }
