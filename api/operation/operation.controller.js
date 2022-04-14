@@ -2,6 +2,8 @@
 const service = require('../../services/operation.mssql.service')
 const Response = require('../../utils/response')
 const log4js = require('../../utils/log4js')()
+const File = require('./../../utils/fileSystem')
+const file = new File()
 
 const jwt = require('../middlewares/jwt')
 const email = require('../../utils/email/email')
@@ -20,9 +22,9 @@ module.exports = function () {
 		},
 		createOperation: async (req, res) => {
 			try {
-				console.log(req.file)
-				if(req.file){
-					console.log(req.file)
+				console.log(req.files.file)
+				if(req.files){
+					file.guardarImagenTemporal(req.files.file, 'firmas')
 				}
 				const data = await service.createOperation(req.body)
                 return data

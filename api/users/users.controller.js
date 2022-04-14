@@ -77,6 +77,7 @@ module.exports = function () {
 				if (!user) {
 					throw Response.error(req, res, 'No se encontró ningún registro con ese ID', 400)
 				} else {
+					console.log(req.body)
 					// throw Response.error(req, res, 'Error provocado')
 					const newPassword = bcrypt.hashSync(req.body.usrPassword, 10)
 					await userMobileSqlServer.updatePass(id, newPassword)

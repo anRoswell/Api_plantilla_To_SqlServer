@@ -6,10 +6,10 @@ const uniqid = require('uniqid')
 class FileSystem {
 	constructor() {}
 
-	async guardarImagenTemporal(file, data, userId, carpeta) {
+	async guardarImagenTemporal(file, carpeta) {
 		return await new Promise((resolve, reject) => {
 			// Crear carpeta
-			const path = this.crearCarpetaUsuario(userId, data.id, carpeta)
+			const path = this.crearCarpetaUsuario(carpeta)
 
 			// Nombre Archivo
 			const nombreArchivo = this.generarNombreUnico(file.name)
@@ -39,11 +39,11 @@ class FileSystem {
 		return `${idUnico}.${extension}`
 	}
 
-	crearCarpetaUsuario(userId, id, carpeta) {
-		const pathBD = `${carpeta}/${userId}/${id}`
+	crearCarpetaUsuario(carpeta) {
+		const pathBD = `${carpeta}`
 		const pathRaiz = path.resolve(__dirname, `../uploads/${carpeta}`)
-		const pathUser = pathRaiz + `/${userId}`
-		const pathUserCuentaContrato = pathUser + `/${id}`
+		const pathUser = `${pathRaiz}`
+		const pathUserCuentaContrato = pathUser
 		const pathUserFinal = pathUserCuentaContrato + '/'
 		console.log(pathUserFinal)
 

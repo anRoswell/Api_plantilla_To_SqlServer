@@ -19,7 +19,7 @@ router
     })
 	.put('/updateOperation', (req, res, next) => {
         Controller.updateOperation(req, res)
-			.then((lista) => response.success(req, res, lista, 200, 'created'))
+			.then((lista) => response.success(req, res, lista, 200, 'updated'))
 			.catch(next)
     })
 

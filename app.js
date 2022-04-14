@@ -14,20 +14,6 @@ const helmet = require('helmet')
 const path = require('path')
 const https = require('https')
 
-//Permite imprimir por pantalla el documento js q imprime por consola
-// const CsbInspector = require('./utils/CsbInspector')(app, fs)
-const CsbInspector = require('csb-inspector/express-socket')
-const options = {
-	app: app,
-	route: '_console',
-	port: 8888,
-	outputs: [
-		(path, prop, args) => {
-			fs.appendFileSync('file.txt', path)
-		},
-	],
-}
-
 const swaggerDoc = require('./api/swagger.json')
 
 // app.use(helmet())
@@ -36,7 +22,7 @@ const swaggerDoc = require('./api/swagger.json')
 app.use(
 	fileUpload({
 		limits: { fileSize: 50 * 1024 * 1024 },
-		tempFileDir: '/tmp/',
+		tempFileDir: '/tmp/'
 	}),
 )
 
@@ -63,9 +49,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 app.disable('x-powered-by')
 
 app.use(errors)
-
-//Imprime por console y Web (http://localhost:8181/_console) los mensajes console.log
-CsbInspector(options)
 
 // Ruta de error cuando no se encuentre definida
 app.get('*', (req, res) => {

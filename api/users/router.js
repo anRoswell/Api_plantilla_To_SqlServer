@@ -30,7 +30,7 @@ router
 	})
 	.put('/passmbusers/:id', async (req, res, next) => {
 		Controller.updatePassUsermb(req, res)
-			.then((resp) => response.success(req, res, resp, 200))
+			.then((resp) => response.success(req, res, resp, 200, 'update'))
 			.catch(next)
 	})
 
