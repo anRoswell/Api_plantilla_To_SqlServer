@@ -31,7 +31,7 @@ const findOne = async (user) => {
 const update = async (id) => {
 	const query = `
     UPDATE [dbo].[users]
-    SET lastLogin = GETDATE()
+    SET last_login = GETDATE()
     WHERE id = ${id}
   `
 	return await Queries.query(query)
