@@ -32,7 +32,7 @@ module.exports = function () {
 		updateProfesion: async (req, res) => {
 			try {
 				const data = req.body
-				const id = req.query.id
+				const id = req.params.id
 				console.log(id)
 				const resp = await service.updateProfesion(data, id)
                 return resp
