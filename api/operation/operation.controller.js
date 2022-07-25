@@ -23,9 +23,9 @@ module.exports = function () {
 		createOperation: async (req, res) => {
 			try {
 				console.log(req.files.file)
-				if(req.files){
+				/*if(req.files){
 					file.guardarImagenTemporal(req.files.file, 'firmas')
-				}
+				}*/
 				const data = await service.createOperation(req.body)
                 return data
 			} catch (e) {
