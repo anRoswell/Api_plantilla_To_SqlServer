@@ -3,5 +3,6 @@ const users = require('../../api/users/router')
 const logs = require('../../api/logs/router')
 const profesiones = require('../../api/profesiones/router')
 const operation = require('../../api/operation/router')
+const sede = require('../../api/sede/router')
 
-module.exports = [auth, users, logs, profesiones, operation]
+module.exports = [auth, users, logs, profesiones, operation, sede]
