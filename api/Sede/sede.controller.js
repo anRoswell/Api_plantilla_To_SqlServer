@@ -6,9 +6,22 @@ const log4js = require('../../utils/log4js')()
 module.exports = function () {
 	return {
 		getSedes: async (req, res) => {
-			const respuesta = await service.getSedes();
-            return respuesta;
-		}
+			try {
+				const respuesta = await service.getSedes()
+				return respuesta
+			} catch (error) {
+				log4js.error(`[action: getSedes, sede.Controllador][msg: ${e.message}][file:${__filename}]`)
+				throw Response.error(req, res, 'Error interno en el servidor', 400)
+			}
+		},
+		searchSedeById: async (req, res) => {
+			const id = req.params.id
+			const respuesta = await service.searchSedeById(id)
+			return respuesta
+		},
+		createSede: async (req, res) => {
+			const respuesta = await service.createSede()
+			return respuesta
+		},
 	}
 }
-

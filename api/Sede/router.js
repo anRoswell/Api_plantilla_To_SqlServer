@@ -13,6 +13,15 @@ router
 			.then((lista) => response.success(req, res, lista, 200))
 			.catch(next)
 	})
-	
+	.get('/searchSedeById/:id', async (req, res, next) => {
+		Controller.searchSedeById(req, res)
+			.then((lista) => response.success(req, res, lista, 200))
+			.catch(next)
+	})
+	.post('/createSede', async (req, res, next) => {
+		Controller.createSede(req, res)
+			.then((lista) => response.success(req, res, lista, 200))
+			.catch(next)
+	})
 
 module.exports = router
