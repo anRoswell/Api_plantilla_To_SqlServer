@@ -25,7 +25,7 @@
 		"moment": "^2.25.3",
 		"mssql": "^6.2.1",
 		"nodemailer": "^6.4.6",
-		"nodemon": "^2.0.4",
+		"nodemon": "^2.0.19",
 		"npm-check-updates": "^12.5.2",
 		"oracledb": "^4.2.0",
 		"path": "^0.12.7",
