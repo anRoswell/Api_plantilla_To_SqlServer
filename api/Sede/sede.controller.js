@@ -20,8 +20,30 @@ module.exports = function () {
 			return respuesta
 		},
 		createSede: async (req, res) => {
-			const respuesta = await service.createSede()
+            const data = req.body
+			const respuesta = await service.createSede(data)
 			return respuesta
+		},
+		updateSede: async (req, res) => {
+			try {
+				const data = req.body
+				const id = req.params.id
+				const resp = await service.updateSede(data, id)
+				return resp
+			} catch (e) {
+				log4js.error(`[action: authAdminMsSql][msg: ${e.message}][file:${__filename}]`)
+				throw Response.error(req, res, 'Error interno en el servidor', 500)
+			}
+		},
+        deleteSede: async (req, res) => {
+			try {
+				const id = req.query.id
+				const resp = await service.deleteSede(id)
+				return resp
+			} catch (e) {
+				log4js.error(`[action: authAdminMsSql][msg: ${e.message}][file:${__filename}]`)
+				throw Response.error(req, res, 'Error interno en el servidor', 500)
+			}
 		},
 	}
 }

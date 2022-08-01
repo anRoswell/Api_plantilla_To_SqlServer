@@ -23,5 +23,15 @@ router
 			.then((lista) => response.success(req, res, lista, 200))
 			.catch(next)
 	})
+    .put('/updateSede/:id', (req, res, next) => {
+		Controller.updateSede(req, res)
+			.then((lista) => response.success(req, res, lista, 200, 'update'))
+			.catch(next)
+	})
+    .delete('/deleteSede', (req, res, next) => {
+		Controller.deleteSede(req, res)
+			.then((lista) => response.success(req, res, lista, 200, 'delete'))
+			.catch(next)
+    })
 
 module.exports = router

@@ -31,6 +31,7 @@ const searchSedeById = async (id) => {
 }
 
 const createSede = async (data) => {
+    console.log(data);
 	try {
 		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ accion: 1, ...data }])
 		return recordset
@@ -40,8 +41,30 @@ const createSede = async (data) => {
 	}
 }
 
+const updateSede = async (data, id) => {
+	try {
+		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ accion: 2, ...data, id }])
+		return recordset
+	} catch (e) {
+		log4js.error(`[action: updateSede metodo: updateSede][msg: ${e.message}][file:${__filename}]`)
+		throw new Error(mensajes('DB_CONNECTION_ERROR').message)
+	}
+}
+
+const deleteSede = async (id) => {
+	try {
+		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ accion: 3, id }])
+		return recordset
+	} catch (e) {
+		log4js.error(`[action: deleteSede metodo: deleteSede][msg: ${e.message}][file:${__filename}]`)
+		throw new Error(mensajes('DB_CONNECTION_ERROR').message)
+	}
+}
+
 module.exports = {
 	getSedes,
 	createSede,
 	searchSedeById,
+    updateSede,
+    deleteSede,
 }
