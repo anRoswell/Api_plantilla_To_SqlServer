@@ -22,14 +22,25 @@ module.exports = function () {
 		},
 		createOperation: async (req, res) => {
 			try {
-				console.log(req.files.file)
+				let saveRegister = true
+				let fileResp
 
 				if (req.files) {
-					file.guardarImagenTemporal(req.files.file, 'firmas')
+					try {
+						fileResp = await file.guardarImagenTemporal(req.files.file, 'firmas')
+
+						console.log(fileResp)
+					} catch (error) {
+						saveRegister = false
+					}
 				}
 
-				const data = await service.createOperation(req.body)
-				return data
+				if (saveRegister) {
+					const data = await service.createOperation({ ...req.body, ruta: fileResp?.ruta })
+					return data
+				}
+
+				return {}
 			} catch (e) {
 				console.log(e)
 				log4js.error(`[action: createOperation][msg: ${e.message}][file:${__filename}]`)

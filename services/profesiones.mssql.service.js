@@ -22,6 +22,7 @@ const getProfesiones = async () => {
 
 const createProfesion = async (data) => {
 	try {
+		console.log(data)
 		const { recordset } = await Queries.querySP('[csc].[spProfesiones]', [{ action: 1, ...data }])
 		return recordset
 	} catch (e) {

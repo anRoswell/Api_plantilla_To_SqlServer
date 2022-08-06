@@ -8,25 +8,30 @@ class FileSystem {
 
 	async guardarImagenTemporal(file, carpeta) {
 		return await new Promise((resolve, reject) => {
-			// Crear carpeta
-			const path = this.crearCarpetaUsuario(carpeta)
+			try {
+				// Crear carpeta
+				const path = this.crearCarpetaUsuario(carpeta)
 
-			// Nombre Archivo
-			const nombreArchivo = this.generarNombreUnico(file.name)
-			const filePath = `${path.pathUserFinal}/${nombreArchivo}`
+				// Nombre Archivo
+				const nombreArchivo = this.generarNombreUnico(file.name)
+				const filePath = `${path.pathUserFinal}/${nombreArchivo}`
 
-			//Mover archivo de tmp a carpetaFinal
-			file.mv(filePath, (err) => {
-				if (err) {
-					reject(err)
-				} else {
-					const retorno = {
-						nombreArchivo,
-						ruta: `${path.pathBD}/${nombreArchivo}`,
+				//Mover archivo de tmp a carpetaFinal
+				file.mv(filePath, (err) => {
+					if (err) {
+						reject(err)
+					} else {
+						const retorno = {
+							nombreArchivo,
+							ruta: `${path.pathBD}/${nombreArchivo}`,
+						}
+						resolve(retorno)
 					}
-					resolve(retorno)
-				}
-			})
+				})
+			} catch (error) {
+				console.log(error)
+				resolve(error)
+			}
 		})
 	}
 

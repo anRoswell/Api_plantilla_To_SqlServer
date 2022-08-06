@@ -22,8 +22,8 @@ const swaggerDoc = require('./api/swagger.json')
 app.use(
 	fileUpload({
 		limits: { fileSize: 50 * 1024 * 1024 },
-		tempFileDir: '/tmp/'
-	}),
+		tempFileDir: '/tmp/',
+	})
 )
 
 //Headers
@@ -66,9 +66,9 @@ function startServer() {
 
 	const serverHttp = app.listen(PORT, () => {
 		console.log(`Servidor http escuchando en el puerto ${PORT}`)
-		console.log(`Ambiente de ${ENV}`);
+		console.log(`Ambiente de ${ENV}`)
 	})
-	
+
 	// const serverHttps = https.createServer(httpsOptions, app).listen(PORTS, () => {
 	// console.log(`Servidor https escuchando en el puerto ${PORTS}`)
 	// console.log(`Ambiente de ${ENV}`);
