@@ -13,7 +13,7 @@ module.exports = function () {
 		initialParameters: async (req, res) => {
 			try {
 				const data = await service.initialParameters()
-                return data
+				return data
 			} catch (e) {
 				console.log(e)
 				log4js.error(`[action: operation][msg: ${e.message}][file:${__filename}]`)
@@ -27,23 +27,22 @@ module.exports = function () {
 					file.guardarImagenTemporal(req.files.file, 'firmas')
 				}*/
 				const data = await service.createOperation(req.body)
-                return data
+				return data
 			} catch (e) {
 				console.log(e)
 				log4js.error(`[action: createOperation][msg: ${e.message}][file:${__filename}]`)
-				throw Response.error(req, res, 'Error interno en el servidor', 500)
+				throw Response.error(req, res, 'Error interno en el servidor', 400)
 			}
 		},
 		updateOperation: async (req, res) => {
 			try {
 				const data = await service.updateOperation(req.body)
-                return data
+				return data
 			} catch (e) {
 				console.log(e)
 				log4js.error(`[action: updateOperation][msg: ${e.message}][file:${__filename}]`)
-				throw Response.error(req, res, 'Error interno en el servidor', 500)
+				throw Response.error(req, res, 'Error interno en el servidor', 400)
 			}
 		},
 	}
 }
-

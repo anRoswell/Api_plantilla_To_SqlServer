@@ -12,7 +12,7 @@ const log4js = require('../utils/log4js')()
 
 const getSedes = async () => {
 	try {
-		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ accion: 4 }])
+		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ action: 4 }])
 		return recordset
 	} catch (e) {
 		log4js.error(`[action: sedes metodo: getSee][msg: ${e.message}][file:${__filename}]`)
@@ -22,7 +22,7 @@ const getSedes = async () => {
 
 const searchSedeById = async (id) => {
 	try {
-		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ accion: 2, id }])
+		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ action: 2, id }])
 		return recordset
 	} catch (e) {
 		log4js.error(`[action: profesiones metodo: getProfesiones][msg: ${e.message}][file:${__filename}]`)
@@ -32,7 +32,7 @@ const searchSedeById = async (id) => {
 
 const createSede = async (data) => {
 	try {
-		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ accion: 1, ...data }])
+		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ action: 1, ...data }])
 		return recordset
 	} catch (error) {
 		log4js.error(`[action: sedes.mssql.service metodo: createSede][msg: ${e.message}][file:${__filename}]`)
@@ -42,7 +42,7 @@ const createSede = async (data) => {
 
 const updateSede = async (data, id) => {
 	try {
-		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ accion: 2, ...data, id }])
+		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ action: 2, ...data, id }])
 		return recordset
 	} catch (e) {
 		log4js.error(`[action: updateSede metodo: updateSede][msg: ${e.message}][file:${__filename}]`)
@@ -52,7 +52,7 @@ const updateSede = async (data, id) => {
 
 const deleteSede = async (id) => {
 	try {
-		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ accion: 3, id }])
+		const { recordset } = await Queries.querySP('[csc].[spSedes]', [{ action: 3, id }])
 		return recordset
 	} catch (e) {
 		log4js.error(`[action: deleteSede metodo: deleteSede][msg: ${e.message}][file:${__filename}]`)
@@ -64,6 +64,6 @@ module.exports = {
 	getSedes,
 	createSede,
 	searchSedeById,
-    updateSede,
-    deleteSede,
+	updateSede,
+	deleteSede,
 }

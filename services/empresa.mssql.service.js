@@ -12,7 +12,7 @@ const log4js = require('../utils/log4js')()
 
 const getEmpresa = async () => {
 	try {
-		const { recordset } = await Queries.querySP('[csc].[spEmpresas]', [{ accion: 4 }])
+		const { recordset } = await Queries.querySP('[csc].[spEmpresas]', [{ action: 4 }])
 		return recordset
 	} catch (e) {
 		log4js.error(`[action: empresa metodo: getSee][msg: ${e.message}][file:${__filename}]`)
@@ -22,7 +22,7 @@ const getEmpresa = async () => {
 
 const createEmpresa = async (data) => {
 	try {
-		const { recordset } = await Queries.querySP('[csc].[spEmpresas]', [{ accion: 1, ...data }])
+		const { recordset } = await Queries.querySP('[csc].[spEmpresas]', [{ action: 1, ...data }])
 		return recordset
 	} catch (error) {
 		log4js.error(`[action: empresas.mssql.service metodo: createEmpresa][msg: ${e.message}][file:${__filename}]`)
@@ -32,7 +32,7 @@ const createEmpresa = async (data) => {
 
 const updateEmpresa = async (data, id) => {
 	try {
-		const { recordset } = await Queries.querySP('[csc].[spEmpresas]', [{ accion: 2, ...data, id }])
+		const { recordset } = await Queries.querySP('[csc].[spEmpresas]', [{ action: 2, ...data, id }])
 		return recordset
 	} catch (e) {
 		log4js.error(`[action: updateEmpresa metodo: updateEmpresa][msg: ${e.message}][file:${__filename}]`)
@@ -42,7 +42,7 @@ const updateEmpresa = async (data, id) => {
 
 const deleteEmpresa = async (id) => {
 	try {
-		const { recordset } = await Queries.querySP('[csc].[spEmpresas]', [{ accion: 3, id }])
+		const { recordset } = await Queries.querySP('[csc].[spEmpresas]', [{ action: 3, id }])
 		return recordset
 	} catch (e) {
 		log4js.error(`[action: deleteEmpresas metodo: deleteSede][msg: ${e.message}][file:${__filename}]`)
@@ -52,7 +52,7 @@ const deleteEmpresa = async (id) => {
 
 module.exports = {
 	getEmpresa,
-    createEmpresa,
-    updateEmpresa,
-    deleteEmpresa,	
+	createEmpresa,
+	updateEmpresa,
+	deleteEmpresa,
 }
