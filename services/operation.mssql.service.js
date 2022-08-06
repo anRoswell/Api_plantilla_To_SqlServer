@@ -12,9 +12,9 @@ const log4js = require('../utils/log4js')()
 
 const initialParameters = async () => {
 	try {
-        const profesiones = await Queries.querySP('[csc].[spProfesiones]')
-        const empresas = await Queries.querySP('[csc].[spEmpresas]')
-        const sedes = await Queries.querySP('[csc].[spSedes]')
+        const profesiones = await Queries.querySP('[csc].[spProfesiones]', [{ action: 4 }])
+        const empresas = await Queries.querySP('[csc].[spEmpresas]', [{ action: 4 }])
+        const sedes = await Queries.querySP('[csc].[spSedes]', [{ action: 4 }])
         const profesionales = await Queries.querySP('[ope].[spProfesionales]', [{ action: 2 }])
 	    return { 
             profesiones: profesiones.recordset, 
