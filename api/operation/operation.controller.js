@@ -28,7 +28,7 @@ module.exports = function () {
 				if (req.files) {
 					try {
 						fileResp = await file.guardarImagenTemporal(req.files.file, 'firmas')
-
+						req.body.rutaRelativa = fileResp.ruta
 						console.log(fileResp)
 					} catch (error) {
 						saveRegister = false
@@ -36,7 +36,7 @@ module.exports = function () {
 				}
 
 				if (saveRegister) {
-					const data = await service.createOperation({ ...req.body, ruta: fileResp?.ruta })
+					const data = await service.createOperation({ ...req.body })
 					return data
 				}
 
@@ -49,8 +49,25 @@ module.exports = function () {
 		},
 		updateOperation: async (req, res) => {
 			try {
-				const data = await service.updateOperation(req.body)
-				return data
+				let saveRegister = true
+				let fileResp
+
+				if (req.files) {
+					try {
+						fileResp = await file.guardarImagenTemporal(req.files.file, 'firmas')
+						req.body.rutaRelativa = fileResp.ruta
+						console.log(fileResp)
+					} catch (error) {
+						saveRegister = false
+					}
+				}
+
+				if (saveRegister) {
+					const data = await service.updateOperation({ ...req.body })
+					return data
+				}
+
+				return {}
 			} catch (e) {
 				console.log(e)
 				log4js.error(`[action: updateOperation][msg: ${e.message}][file:${__filename}]`)
