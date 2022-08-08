@@ -17,7 +17,17 @@ module.exports = function () {
 			} catch (e) {
 				console.log(e)
 				log4js.error(`[action: operation][msg: ${e.message}][file:${__filename}]`)
-				throw Response.error(req, res, 'Error interno en el servidor', 500)
+				throw Response.error(req, res, 'Error interno en el servidor', 400)
+			}
+		},
+		getProfesionales: async (req, res) => {
+			try {
+				const data = await service.getProfesionales()
+				return data
+			} catch (e) {
+				console.log(e)
+				log4js.error(`[action: operation][msg: ${e.message}][file:${__filename}]`)
+				throw Response.error(req, res, 'Error interno en el servidor', 400)
 			}
 		},
 		createOperation: async (req, res) => {

@@ -28,6 +28,16 @@ const initialParameters = async () => {
 	}
 }
 
+const getProfesionales = async () => {
+	try {
+		const profesionales = await Queries.querySP('[ope].[spProfesionales]', [{ action: 2 }])
+		return profesionales.recordset
+	} catch (e) {
+		log4js.error(`[action: operation metodo: profesionales][msg: ${e.message}][file:${__filename}]`)
+		throw new Error(mensajes('DB_CONNECTION_ERROR').message)
+	}
+}
+
 const createOperation = async (data) => {
 	try {
 		const { recordset } = await Queries.querySP('[ope].[spProfesionales]', [{ action: 1, ...data }])
@@ -52,4 +62,5 @@ module.exports = {
 	initialParameters,
 	createOperation,
 	updateOperation,
+	getProfesionales,
 }

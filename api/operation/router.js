@@ -12,15 +12,20 @@ router
 			.then((lista) => response.success(req, res, lista, 200, 'search'))
 			.catch(next)
 	})
-    .post('/createOperation',(req, res, next) => {
-        Controller.createOperation(req, res)
+	.get('/profesionales', (req, res, next) => {
+		Controller.getProfesionales(req, res)
+			.then((lista) => response.success(req, res, lista, 200, 'search'))
+			.catch(next)
+	})
+	.post('/createOperation', (req, res, next) => {
+		Controller.createOperation(req, res)
 			.then((lista) => response.success(req, res, lista, 200, 'created'))
 			.catch(next)
-    })
+	})
 	.put('/updateOperation', (req, res, next) => {
-        Controller.updateOperation(req, res)
+		Controller.updateOperation(req, res)
 			.then((lista) => response.success(req, res, lista, 200, 'updated'))
 			.catch(next)
-    })
+	})
 
 module.exports = router
